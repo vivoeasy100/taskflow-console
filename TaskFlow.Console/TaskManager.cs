@@ -11,19 +11,14 @@ public class TaskManager
         return task;
     }
 
-    public TaskItem GetById(Guid id)
+    public TaskItem? GetById(Guid id)
     {
-        var task = _tasks.FirstOrDefault(t => t.Id == id);
-        if (task == null)
-        {
-            throw new KeyNotFoundException("Tarefa não encontrada.");
-        }
-        return task;
+        return _tasks.FirstOrDefault(t => t.Id == id);
     }
 
     public bool CompleteTask(Guid id)
     {
-        var task = _tasks.FirstOrDefault(t => t.Id == id);
+        var task = GetById(id);
         if (task == null)
         {
             return false;
