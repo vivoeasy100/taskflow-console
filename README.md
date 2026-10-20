@@ -43,6 +43,82 @@ taskflow-console/
 
 ---
 
+## 🛠️ Comandos Executados Passo a Passo
+
+Abaixo está o registro completo de todos os comandos aplicados para a realização do exercício, seguindo estritamente as tarefas propostas:
+
+### 0. Configuração do Autor no Git
+```powershell
+git config user.name "Fernando almeida de oliveira braga"
+```
+
+### 1. Inicialização e Estrutura do Projeto (Tarefas A e B)
+```powershell
+# Tarefa A: Criação da solution e do projeto Console
+dotnet new sln -n TaskFlow
+dotnet new console -n TaskFlow.Console
+dotnet sln TaskFlow.slnx add TaskFlow.Console/TaskFlow.Console.csproj
+git add TaskFlow.slnx TaskFlow.Console
+git commit -m "chore(core): initialize .NET 10 solution and console project structure"
+
+# Tarefa B: Criação do projeto de testes xUnit e adição da referência
+dotnet new xunit -n TaskFlow.Tests
+dotnet sln TaskFlow.slnx add TaskFlow.Tests/TaskFlow.Tests.csproj
+dotnet add TaskFlow.Tests/TaskFlow.Tests.csproj reference TaskFlow.Console/TaskFlow.Console.csproj
+Remove-Item TaskFlow.Tests/UnitTest1.cs
+git add TaskFlow.slnx TaskFlow.Tests
+git commit -m "chore(test): add xUnit test project and reference to console Project"
+```
+
+### 2. Implementação de Funcionalidades (Tarefas C e D)
+```powershell
+# Tarefa C: Implementação da entidade de domínio TaskItem
+git add TaskFlow.Console/TaskItem.cs
+git commit -m "feat(domain): implement TaskItem entity with completion logic"
+
+# Tarefa D: Implementação do serviço de gerenciamento TaskManager
+git add TaskFlow.Console/TaskManager.cs
+git commit -m "feat(services): implement TaskManager logic for in-memory task management"
+```
+
+### 3. Garantia da Qualidade com Testes (Tarefa E)
+```powershell
+# Tarefa E: Criação da suíte de testes xUnit (TaskManagerTests.cs)
+git add TaskFlow.Tests/TaskManagerTests.cs
+git commit -m "test(unit): add xUnit test suite for TaskManager validation rules"
+
+# Execução dos testes (evidencia a falha por KeyNotFoundException em GetById)
+dotnet test
+```
+
+### 4. Correção de Bugs (Tarefa F)
+```powershell
+# Tarefa F: Ajuste em TaskManager.cs para retornar null caso a tarefa não exista
+git add TaskFlow.Console/TaskManager.cs
+git commit -m "fix(manager): handle missing task gracefully in search method"
+
+# Validação dos testes após a correção (todos passam com sucesso)
+dotnet test
+```
+
+### 5. Refatoração e Melhorias (Tarefas G e H)
+```powershell
+# Tarefa G: Menu interativo em Program.cs
+git add TaskFlow.Console/Program.cs
+git commit -m "refactor(console): implement interactive menu loop in Program.cs"
+
+# Tarefa H: Documentação de compilação, execução e testes no README.md
+git add README.md
+git commit -m "docs(readme): add build, run and test instructions"
+```
+
+### 6. Sincronização com o Repositório Remoto
+```powershell
+git push origin main
+```
+
+---
+
 ## ⚙️ Como Compilar e Executar
 
 ### 1. Pré-requisitos
